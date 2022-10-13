@@ -18,6 +18,7 @@ import javax.persistence.Table;
  *
  * @author hernan
  */
+
 @Entity
 @Table(name = "client")
 public class Client {
@@ -29,11 +30,11 @@ public class Client {
     private String name;
     private Integer age;
 
-   @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "client")
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "client")
     @JsonIgnoreProperties("client")
     private List<Message> messages;
    
-   @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "client")
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "client")
     @JsonIgnoreProperties("client")
     private List<Reservation> reservations;
 

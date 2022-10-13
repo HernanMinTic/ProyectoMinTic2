@@ -36,7 +36,7 @@ public class Quadbike {
     @JsonIgnoreProperties("quadbikes")
     private Category category;
     
-     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "quadbike")
+    @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "quadbike")
     @JsonIgnoreProperties({"quadbike","client"})
     private List<Message> messages;
      

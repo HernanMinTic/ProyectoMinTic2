@@ -19,12 +19,11 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "message")
-
 public class Message {
-     @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-     private Integer idMessage;
-     private String messageText;
+    private Integer idMessage;
+    private String messageText;
 
     @ManyToOne
     @JoinColumn(name = "quadbikeId")
