@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
@@ -45,6 +46,12 @@ public class QuadbikeController {
     @ResponseStatus(HttpStatus.CREATED)
     public Quadbike save (@RequestBody Quadbike quadbike){
         return quadbikeService.save(quadbike);
+    }
+    
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Quadbike update(@RequestBody Quadbike quadbike) {
+        return quadbikeService.update(quadbike);
     }
     
     @DeleteMapping("/{id}")
