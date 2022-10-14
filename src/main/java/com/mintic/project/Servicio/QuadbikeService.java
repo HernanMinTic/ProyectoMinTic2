@@ -41,4 +41,41 @@ public class QuadbikeService {
             }
         }
     }
+    
+    public Quadbike update(Quadbike quadbike){
+        if(quadbike.getId()!=null){
+            Optional<Quadbike> e= quadbikeRepository.getQuadbike(quadbike.getId());
+            if(!e.isEmpty()){
+                if(quadbike.getName()!=null){
+                    e.get().setName(quadbike.getName());
+                }
+                if(quadbike.getBrand()!=null){
+                    e.get().setBrand(quadbike.getBrand());
+                }
+                if(quadbike.getYear()!=null){
+                    e.get().setYear(quadbike.getYear());
+                }
+                if(quadbike.getDescription()!=null){
+                    e.get().setDescription(quadbike.getDescription());
+                }
+                if(quadbike.getCategory()!=null){
+                    e.get().setCategory(quadbike.getCategory());
+                }
+                quadbikeRepository.save(e.get());
+                return e.get();
+            }else{
+                return quadbike;
+            }
+        }else{
+            return quadbike;
+        }
+    }
+        
+    public boolean deleteQuadbike (int id){
+        Boolean d = getQuadbike(id).map(quadbike -> {
+            quadbikeRepository.delete(quadbike);
+            return true;
+        }).orElse(false);
+        return d;    
+    }
 }

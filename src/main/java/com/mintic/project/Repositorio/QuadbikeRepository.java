@@ -32,4 +32,8 @@ public class QuadbikeRepository {
     public Quadbike save(Quadbike quadbike){
         return extencionesCrud.save(quadbike);
     }
+    
+    public void delete(Quadbike quadbike){
+        extencionesCrud.delete(quadbike);
+    }
 }
