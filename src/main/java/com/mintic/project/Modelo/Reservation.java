@@ -5,13 +5,16 @@
 package com.mintic.project.Modelo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -21,25 +24,27 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "reservation")
-public class Reservation {
+public class Reservation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-     private Integer idReservation;
-     private Date startDate;
-     private Date devolutionDate;
-     private String status = "created";
-     
+    private Integer idReservation;
+    private Date startDate;
+    private Date devolutionDate;
+    private String status="created";
+
     @ManyToOne
     @JoinColumn(name = "quadbikeId")
-    @JsonIgnoreProperties("reservations")
+    @JsonIgnoreProperties("reservation")
     private Quadbike quadbike;
-    
+
     @ManyToOne
     @JoinColumn(name = "clientId")
-    @JsonIgnoreProperties({"reservations","messages"})
+    @JsonIgnoreProperties({"reservation","messages"})
     private Client client;
-    
-     private String score;
+
+    @OneToOne(cascade = {CascadeType.REMOVE},mappedBy="reservation")
+    @JsonIgnoreProperties("reservation")
+    private Score score;
 
     public Integer getIdReservation() {
         return idReservation;
@@ -89,11 +94,11 @@ public class Reservation {
         this.client = client;
     }
 
-    public String getScore() {
+    public Score getScore() {
         return score;
     }
 
-    public void setScore(String score) {
+    public void setScore(Score score) {
         this.score = score;
     }
 }
