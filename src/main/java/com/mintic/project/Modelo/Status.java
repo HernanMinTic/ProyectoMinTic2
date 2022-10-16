@@ -2,12 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mintic.project.Servicio;
+package com.mintic.project.Modelo;
 
 /**
  *
  * @author hernan
  */
+
 public class Status {
     private int completed;
     private int cancelled;

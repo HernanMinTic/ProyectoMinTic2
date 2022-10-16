@@ -4,6 +4,7 @@
  */
 package com.mintic.project.Repositorio;
 
+import com.mintic.project.Modelo.CountClient;
 import com.mintic.project.Interface.ReservationInterface;
 import com.mintic.project.Modelo.Client;
 import com.mintic.project.Modelo.Reservation;
@@ -21,7 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @Repository
 public class ReservationRepository {
-     @Autowired
+    @Autowired
     private ReservationInterface extencionesCrud;
     
     public List<Reservation> getAll(){
@@ -41,19 +42,19 @@ public class ReservationRepository {
     }
 
     public List<Reservation> getReservationByStatus(String status){
-           return extencionesCrud.findAllByStatus(status);
-       }
+        return extencionesCrud.findAllByStatus(status);
+    }
        
-       public List<Reservation> informePeriodoTiempoReservas(Date a, Date b ){
-           return extencionesCrud.findAllByStartDateAfterAndStartDateBefore(a, b);
-       }
+    public List<Reservation> informePeriodoTiempoReservas(Date a, Date b ){
+        return extencionesCrud.findAllByStartDateAfterAndStartDateBefore(a, b);
+    }
        
-       public List<CountClient> getTopClient(){
-           List<CountClient> res = new ArrayList<>();
-           List<Object[]> report = extencionesCrud.countTotalReservationByClient();
-           for(int i=0;i<report.size();i++){
-               res.add(new CountClient((Long)report.get(i)[1],(Client)report.get(i)[0]));
-           }
-           return res;
-       }
+    public List<CountClient> getTopClient(){
+        List<CountClient> res = new ArrayList<>();
+        List<Object[]> report = extencionesCrud.countTotalReservationByClient();
+        for(int i=0;i<report.size();i++){
+            res.add(new CountClient((Long)report.get(i)[1],(Client)report.get(i)[0]));
+        }
+        return res;
+    }
 }

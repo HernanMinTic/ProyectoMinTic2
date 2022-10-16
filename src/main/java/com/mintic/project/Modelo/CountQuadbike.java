@@ -2,21 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mintic.project.Repositorio;
-
-import com.mintic.project.Modelo.Client;
+package com.mintic.project.Modelo;
 
 /**
  *
  * @author hernan
  */
-public class CountClient {
-    private Long total;
-    private Client client;
 
-    public CountClient(Long total, Client client) {
+public class CountQuadbike {
+    private Long total;
+    private Quadbike quadbike;
+
+    public CountQuadbike(Long total, Quadbike quadbike) {
         this.total = total;
-        this.client = client;
+        this.quadbike = quadbike;
     }
 
     public Long getTotal() {
@@ -27,11 +26,11 @@ public class CountClient {
         this.total = total;
     }
 
-    public Client getClient() {
-        return client;
+    public Quadbike getQuadbike() {
+        return quadbike;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
-    }
+    public void setQuadbike(Quadbike quadbike) {
+        this.quadbike = quadbike;
+    }   
 }

@@ -17,6 +17,7 @@ import javax.persistence.Table;
  *
  * @author hernan
  */
+
 @Entity
 @Table(name = "message")
 public class Message {

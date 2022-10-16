@@ -4,7 +4,7 @@
  */
 package com.mintic.project.Interface;
 
-import com.mintic.project.Modelo.Client;
+import com.mintic.project.Modelo.Admin;
 import org.springframework.data.repository.CrudRepository;
 
 /**
@@ -12,6 +12,6 @@ import org.springframework.data.repository.CrudRepository;
  * @author hernan
  */
 
-public interface ClientInterface extends CrudRepository<Client, Integer>{
-    
+public interface AdminInterface extends CrudRepository<Admin,Integer> {
+
 }

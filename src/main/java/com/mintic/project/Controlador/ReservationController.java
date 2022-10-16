@@ -5,9 +5,9 @@
 package com.mintic.project.Controlador;
 
 import com.mintic.project.Modelo.Reservation;
-import com.mintic.project.Repositorio.CountClient;
+import com.mintic.project.Modelo.CountClient;
 import com.mintic.project.Servicio.ReservationService;
-import com.mintic.project.Servicio.Status;
+import com.mintic.project.Modelo.Status;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
@@ -72,7 +72,7 @@ public class ReservationController {
         return reservationService.informePeriodoTiempoReservas(dateOne,dateTwo);
     }
     
-     @GetMapping("/report-status")
+    @GetMapping("/report-status")
     public Status getReservationsStatusReport(){
         return reservationService.getReservationStatusReport();
     } 

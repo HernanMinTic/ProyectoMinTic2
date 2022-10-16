@@ -20,6 +20,7 @@ import javax.persistence.Table;
  *
  * @author hernan
  */
+
 @Entity
 @Table(name = "quadbike")
 public class Quadbike {

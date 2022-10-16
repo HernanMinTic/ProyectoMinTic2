@@ -4,8 +4,9 @@
  */
 package com.mintic.project.Servicio;
 
+import com.mintic.project.Modelo.Status;
 import com.mintic.project.Modelo.Reservation;
-import com.mintic.project.Repositorio.CountClient;
+import com.mintic.project.Modelo.CountClient;
 import com.mintic.project.Repositorio.ReservationRepository;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
