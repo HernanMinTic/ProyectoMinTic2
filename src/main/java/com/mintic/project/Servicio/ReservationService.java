@@ -81,7 +81,7 @@ public class ReservationService {
     }
     
     public List<CountQuadbike> getTopQuadbikes(){
-        return reservationRepository.getTopQuadbike();
+        return reservationRepository.getTopQuadbikes();
     }
 
     public List<CountClient> getTopClients(){

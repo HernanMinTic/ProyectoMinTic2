@@ -43,7 +43,7 @@ public class ReservationRepository {
         extencionesCrud.delete(reservation);
     }
 
-    public  List<CountQuadbike> getTopQuadbike(){
+    public  List<CountQuadbike> getTopQuadbikes(){
         List<CountQuadbike>res=new ArrayList<>();
         List<Object[]>report=extencionesCrud.countTotalReservationByQuadbike();
         for(int i=0;i<report.size();i++){

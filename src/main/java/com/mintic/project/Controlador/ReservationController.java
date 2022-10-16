@@ -6,6 +6,7 @@ package com.mintic.project.Controlador;
 
 import com.mintic.project.Modelo.Reservation;
 import com.mintic.project.Modelo.CountClient;
+import com.mintic.project.Modelo.CountQuadbike;
 import com.mintic.project.Servicio.ReservationService;
 import com.mintic.project.Modelo.Status;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -62,19 +63,27 @@ public class ReservationController {
         return reservationService.deleteReservation(reservationId);
     }
     
+    @GetMapping("/report-Quadbikes")
+    public List<CountQuadbike> getReservationReportQuadbike(){
+        return reservationService.getTopQuadbikes();
+    }
+
     @GetMapping("/report-clients")
-    public List<CountClient> getReservationsReportClient(){
+    public List<CountClient> getReservationReportClient(){
         return reservationService.getTopClients();
     }
-    
+
     @GetMapping("/report-dates/{dateOne}/{dateTwo}")
-    public List<Reservation> getReservationPeriod(@PathVariable("dateOne") String dateOne,@PathVariable("dateTwo") String dateTwo){
-        return reservationService.getReservationPeriod
-        (dateOne,dateTwo);
+    public List<Reservation> getReservationsReportDates(@PathVariable("dateOne") String dateOne,@PathVariable("dateTwo") String dateTwo){
+        return reservationService.getReservationPeriod(dateOne,dateTwo);
     }
-    
+    @GetMapping("/report-dates/amount/{dateOne}/{dateTwo}")
+    public Integer getReservationsReportDatesAmount(@PathVariable("dateOne") String dateOne,@PathVariable("dateTwo") String dateTwo){
+        return reservationService.getReservationPeriod(dateOne,dateTwo).size();
+    }
+
     @GetMapping("/report-status")
-    public Status getReservationStatusReport(){
+    public Status getReservationsStatusReport(){
         return reservationService.getReservationStatusReport();
-    } 
+    }
 }
