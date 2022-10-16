@@ -7,6 +7,7 @@ package com.mintic.project.Servicio;
 import com.mintic.project.Modelo.Status;
 import com.mintic.project.Modelo.Reservation;
 import com.mintic.project.Modelo.CountClient;
+import com.mintic.project.Modelo.CountQuadbike;
 import com.mintic.project.Repositorio.ReservationRepository;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -24,7 +25,7 @@ import java.util.Optional;
 
 @Service
 public class ReservationService {
-       @Autowired
+    @Autowired
     private ReservationRepository reservationRepository;
     
     public List<Reservation> getAll(){
@@ -79,31 +80,34 @@ public class ReservationService {
         return d;    
     }
     
-    public Status getReservationStatusReport(){
-         List<Reservation> completed = reservationRepository.getReservationByStatus("completed");
-         List<Reservation> cancelled = reservationRepository.getReservationByStatus("cancelled");
-         return new Status(completed.size(),cancelled.size());
-     } 
-     
-    public List<Reservation> informePeriodoTiempoReservas(String datoA, String datoB){
-        SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd");
-        Date a = new Date();
-        Date b = new Date();
-         
-        try{
-            a = parser.parse(datoA);
-            b = parser.parse(datoB);
-        }catch(ParseException e){
+    public List<CountQuadbike> getTopQuadbikes(){
+        return reservationRepository.getTopQuadbike();
+    }
+
+    public List<CountClient> getTopClients(){
+        return reservationRepository.getTopClients();
+    }
+
+    public List<Reservation> getReservationPeriod(String dateA, String dateB){
+        SimpleDateFormat parser=new SimpleDateFormat("yyyy-MM-dd");
+        Date a= new Date();
+        Date b=new Date();
+        try {
+            a = parser.parse(dateA);
+            b = parser.parse(dateB);
+        } catch (ParseException e) {
             e.printStackTrace();
         }
         if(a.before(b)){
-            return reservationRepository.informePeriodoTiempoReservas(a, b);
+            return reservationRepository.getReservationPeriod(a,b);
         }else{
             return new ArrayList<>();
         }
     }
-     
-    public List<CountClient> getTopClients(){
-        return reservationRepository.getTopClient();
-    } 
+    
+    public Status getReservationStatusReport(){
+        List<Reservation>completed=reservationRepository.getReservationByStatus("completed");
+        List<Reservation>cancelled=reservationRepository.getReservationByStatus("cancelled");
+        return new Status(completed.size(),cancelled.size());
+    }
 }

@@ -31,7 +31,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @RequestMapping("/api/Reservation")
 
 public class ReservationController {
-        @Autowired
+    @Autowired
     private ReservationService reservationService;
     
     @GetMapping("/all")
@@ -68,12 +68,13 @@ public class ReservationController {
     }
     
     @GetMapping("/report-dates/{dateOne}/{dateTwo}")
-    public List<Reservation> getReservationsReportDates(@PathVariable("dateOne") String dateOne,@PathVariable("dateTwo") String dateTwo){
-        return reservationService.informePeriodoTiempoReservas(dateOne,dateTwo);
+    public List<Reservation> getReservationPeriod(@PathVariable("dateOne") String dateOne,@PathVariable("dateTwo") String dateTwo){
+        return reservationService.getReservationPeriod
+        (dateOne,dateTwo);
     }
     
     @GetMapping("/report-status")
-    public Status getReservationsStatusReport(){
+    public Status getReservationStatusReport(){
         return reservationService.getReservationStatusReport();
     } 
 }
