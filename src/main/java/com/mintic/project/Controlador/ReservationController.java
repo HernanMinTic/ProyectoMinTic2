@@ -5,7 +5,9 @@
 package com.mintic.project.Controlador;
 
 import com.mintic.project.Modelo.Reservation;
+import com.mintic.project.Repositorio.CountClient;
 import com.mintic.project.Servicio.ReservationService;
+import com.mintic.project.Servicio.Status;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
@@ -59,4 +61,19 @@ public class ReservationController {
     public boolean delete(@PathVariable("id")int reservationId){
         return reservationService.deleteReservation(reservationId);
     }
+    
+    @GetMapping("/report-clients")
+    public List<CountClient> getReservationsReportClient(){
+        return reservationService.getTopClients();
+    }
+    
+    @GetMapping("/report-dates/{dateOne}/{dateTwo}")
+    public List<Reservation> getReservationsReportDates(@PathVariable("dateOne") String dateOne,@PathVariable("dateTwo") String dateTwo){
+        return reservationService.informePeriodoTiempoReservas(dateOne,dateTwo);
+    }
+    
+     @GetMapping("/report-status")
+    public Status getReservationsStatusReport(){
+        return reservationService.getReservationStatusReport();
+    } 
 }
