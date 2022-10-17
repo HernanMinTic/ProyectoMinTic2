@@ -30,19 +30,18 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @RestController
 @RequestMapping("/api/Reservation")
-
 public class ReservationController {
     @Autowired
     private ReservationService reservationService;
     
     @GetMapping("/all")
-    public List<Reservation> getAll(){
+    public List<Reservation> getReservations(){
         return reservationService.getAll();
     }
     
     @GetMapping("/{id}")
-    public Optional<Reservation> getReservation(@PathVariable("id") int id){
-        return reservationService.getReservation(id);
+    public Optional<Reservation> getReservation(@PathVariable("id") int reservationid){
+        return reservationService.getReservation(reservationid);
     } 
     
     @PostMapping("/save")
@@ -64,26 +63,26 @@ public class ReservationController {
     }
     
     @GetMapping("/report-Quadbikes")
-    public List<CountQuadbike> getReservationReportQuadbike(){
+    public List<CountQuadbike> getReservationsReportQuadbike(){
         return reservationService.getTopQuadbikes();
     }
 
     @GetMapping("/report-clients")
-    public List<CountClient> getReservationReportClient(){
+    public List<CountClient> getReservationsReportClient(){
         return reservationService.getTopClients();
     }
 
     @GetMapping("/report-dates/{dateOne}/{dateTwo}")
-    public List<Reservation> getReservationReportDates(@PathVariable("dateOne") String dateOne,@PathVariable("dateTwo") String dateTwo){
-        return reservationService.getReservationPeriod(dateOne,dateTwo);
+    public List<Reservation> getReservatiosnReportDates(@PathVariable("dateOne") String dateOne,@PathVariable("dateTwo") String dateTwo){
+        return reservationService.getReservationsPeriod(dateOne,dateTwo);
     }
     @GetMapping("/report-dates/amount/{dateOne}/{dateTwo}")
-    public Integer getReservationReportDatesAmount(@PathVariable("dateOne") String dateOne,@PathVariable("dateTwo") String dateTwo){
-        return reservationService.getReservationPeriod(dateOne,dateTwo).size();
+    public Integer getReservationsReportDatesAmount(@PathVariable("dateOne") String dateOne,@PathVariable("dateTwo") String dateTwo){
+        return reservationService.getReservationsPeriod(dateOne,dateTwo).size();
     }
 
     @GetMapping("/report-status")
-    public Status getReservationStatusReport(){
-        return reservationService.getReservationStatusReport();
+    public Status getReservationsStatusReport(){
+        return reservationService.getReservationsStatusReport();
     }
 }

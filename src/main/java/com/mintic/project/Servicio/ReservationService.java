@@ -32,8 +32,8 @@ public class ReservationService {
         return reservationRepository.getAll();
     }
     
-    public Optional<Reservation> getReservation(int id){
-        return reservationRepository.getReservation(id);
+    public Optional<Reservation> getReservation(int reservationId){
+        return reservationRepository.getReservation(reservationId);
     }
     
     public Reservation save (Reservation reservation){
@@ -88,7 +88,7 @@ public class ReservationService {
         return reservationRepository.getTopClients();
     }
 
-    public List<Reservation> getReservationPeriod(String dateA, String dateB){
+    public List<Reservation> getReservationsPeriod(String dateA, String dateB){
         SimpleDateFormat parser=new SimpleDateFormat("yyyy-MM-dd");
         Date a= new Date();
         Date b=new Date();
@@ -105,9 +105,9 @@ public class ReservationService {
         }
     }
     
-    public Status getReservationStatusReport(){
-        List<Reservation>completed=reservationRepository.getReservationByStatus("completed");
-        List<Reservation>cancelled=reservationRepository.getReservationByStatus("cancelled");
+    public Status getReservationsStatusReport(){
+        List<Reservation>completed=reservationRepository.getReservationsByStatus("completed");
+        List<Reservation>cancelled=reservationRepository.getReservationsByStatus("cancelled");
         return new Status(completed.size(),cancelled.size());
     }
 }

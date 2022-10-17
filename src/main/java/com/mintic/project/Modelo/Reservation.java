@@ -34,12 +34,12 @@ public class Reservation implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "quadbikeId")
-    @JsonIgnoreProperties("reservation")
+    @JsonIgnoreProperties("reservations")
     private Quadbike quadbike;
 
     @ManyToOne
     @JoinColumn(name = "clientId")
-    @JsonIgnoreProperties({"reservation","messages"})
+    @JsonIgnoreProperties({"reservations","messages"})
     private Client client;
 
     @OneToOne(cascade = {CascadeType.REMOVE},mappedBy="reservation")

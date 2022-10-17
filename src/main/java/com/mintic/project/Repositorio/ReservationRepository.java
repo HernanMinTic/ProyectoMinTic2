@@ -45,7 +45,7 @@ public class ReservationRepository {
 
     public  List<CountQuadbike> getTopQuadbikes(){
         List<CountQuadbike>res=new ArrayList<>();
-        List<Object[]>report=extencionesCrud.countTotalReservationByQuadbike();
+        List<Object[]>report=extencionesCrud.countTotalReservationsByQuadbike();
         for(int i=0;i<report.size();i++){
             res.add(new CountQuadbike((Long)report.get(i)[1],(Quadbike) report.get(i)[0]));
         }
@@ -54,18 +54,18 @@ public class ReservationRepository {
 
     public  List<CountClient> getTopClients(){
         List<CountClient>res=new ArrayList<>();
-        List<Object[]>report=extencionesCrud.countTotalReservationByClient();
+        List<Object[]>report=extencionesCrud.countTotalReservationsByClient();
         for(int i=0;i<report.size();i++){
             res.add(new CountClient((Long)report.get(i)[1],(Client) report.get(i)[0]));
         }
         return res;
     }
-
+    
     public List<Reservation> getReservationPeriod(Date a, Date b){
         return extencionesCrud.findAllByStartDateAfterAndStartDateBefore(a,b);
     }
 
-    public List<Reservation> getReservationByStatus(String status){
+    public List<Reservation> getReservationsByStatus(String status){
         return extencionesCrud.findAllByStatus(status);
     }
 }
